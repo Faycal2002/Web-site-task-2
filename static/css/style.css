@@ -1,0 +1,12 @@
+.carousel {
+  max-width: 800px; /* ajuste selon ton design */
+  margin: 0 auto; /* centre le carousel */
+}
+
+.carousel-inner img {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px; /* optionnel, pour arrondir les coins */
+}
