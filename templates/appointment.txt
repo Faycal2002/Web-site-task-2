@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Appointments - SmartHealth{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row g-4 justify-content-center">
+
+        <!-- Calendrier (gauche) -->
+        <div class="col-12 col-lg-5">
+            <div class="card shadow-sm rounded-4">
+                <div class="card-body p-4">
+
+                    <!-- Sélecteurs Mois / Année (form GET, pas de JS) -->
+                    <form method="get" class="row g-2 align-items-center mb-3">
+                        <div class="col-6">
+                            <label class="form-label mb-0 small">Month</label>
+                            <select class="form-select form-select-sm" name="month" aria-label="Select month">
+                                {% for mnum, mname in months %}
+                                <option value="{{ mnum }}" {% if mnum==month %}selected{% endif %}>{{ mname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label mb-0 small">Year</label>
+                            <select class="form-select form-select-sm" name="year" aria-label="Select year">
+                                {% for y in year_options %}
+                                <option value="{{ y }}" {% if y==year %}selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-2 d-grid">
+                            <label class="form-label mb-0 small opacity-0">Go</label>
+                            <button class="btn btn-outline-secondary btn-sm" type="submit">Go</button>
+                        </div>
+                    </form>
+
+                    <!-- En-tête (affichage) -->
+                    <div class="text-center mb-2">
+                        <div class="fw-semibold">{{ year }}</div>
+                        <h5 class="mb-0">{{ month_name }}</h5>
+                    </div>
+
+                    <!-- Jours de la semaine -->
+                    <div class="row row-cols-7 g-1 text-center mb-2 small text-muted">
+                        <div class="col">SUN</div>
+                        <div class="col">MON</div>
+                        <div class="col">TUE</div>
+                        <div class="col">WED</div>
+                        <div class="col">THU</div>
+                        <div class="col">FRI</div>
+                        <div class="col">SAT</div>
+                    </div>
+
+                    <!-- Grille du mois (weeks = liste de semaines; 0 = case vide) -->
+                    <div class="row row-cols-7 g-1 text-center">
+                        {% for week in weeks %}
+                        {% for d in week %}
+                        <div class="col py-1">
+                            {% if d == 0 %}
+                            <div class="py-2"></div>
+                            {% else %}
+                            {% set link = url_for('appointments_page', year=year, month=month, day=d) %}
+                            {% if day == d %}
+                            <a class="btn btn-primary w-100 rounded-4 py-2 text-white" href="{{ link }}">{{ d }}</a>
+                            {% else %}
+                            <a class="btn btn-light w-100 rounded-4 py-2" href="{{ link }}">{{ d }}</a>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Bouton (placeholder; activera un formulaire plus tard) -->
+                    <div class="d-grid mt-4">
+                        <a class="btn btn-primary rounded-pill" href="#">Add Event</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Panneau violet (droite) -->
+        <div class="col-12 col-lg-7">
+            <div class="h-100 rounded-4 shadow-sm" style="background:#6f42c1; min-height: 520px;">
+                <div class="p-3">
+                    {% if day %}
+                    <div class="bg-white bg-opacity-75 border rounded-3 p-3">
+                        There are no events planned for {{ month_name }} {{ day }}.
+                    </div>
+                    {% else %}
+                    <div class="bg-white bg-opacity-75 border rounded-3 p-3">
+                        Select a day to view or add events.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
