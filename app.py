@@ -7,7 +7,7 @@ def home():
     return render_template("index.html")
 
 # 🆕 Route pour la page Login
-@app.route("/login")
+@app.route('/login', methods=('GET', 'POST'))
 def login():
     return render_template("login.html")
 

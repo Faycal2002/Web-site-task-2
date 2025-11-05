@@ -15,13 +15,13 @@
         <nav class="navbar navbar-expand-lg fixed-top bg-white">
           <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
               <img src="static/img/Logo.png" alt="Logo" width="35" height="35" class="d-inline-block align-text-top">
               SmartHealth
             </a>
 
             <div class="d-flex align-items-center gap-2 ms-auto d-lg-none">
-              <a class="btn btn-dark btn-sm" href="#">Login / Register</a>
+              <a class="btn btn-dark btn-sm" href="/login">Login / Register</a>
               <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +32,13 @@
             <div class="collapse navbar-collapse justify-content-lg-center" id="navbarNavDropdown">
               <ul class="navbar-nav gap-lg-4">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About us</a>
+                  <a class="nav-link" href="{{ url_for('home') }}#about">About us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Services</a>
+                  <a class="nav-link" href="{{ url_for('home') }}#ourservices">Services</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,13 +58,16 @@
                     <li><a class="dropdown-item" href="#">Psychiatry</a></li>
                     <li><a class="dropdown-item" href="#">Radiology</a></li>
                   </ul>
+                  <li class="nav-item">
+                   <a class="nav-link" href="#ourservices">Contact</a>
+                  </li>
                 </li>
               </ul>
             </div>
 
             <!-- Bouton desktop (à droite, hors menu) -->
             <div class="d-none d-lg-block ms-lg-3">
-              <a class="btn btn-dark" href="#">Login / Register</a>
+              <a class="btn btn-dark" href="/login">Login / Register</a>
             </div>
 
           </div>
@@ -77,18 +80,20 @@
     <footer class="bg-dark text-light text-center py-5 " >
   <div class="container-fluid">
     <div class="mb-3">
-      <img src="static/img/Logo white.png" alt="Logo" width="40" height="40" >
-      <span class="fs-4 ms-2">SmartHealth</span>
+    <a href="{{ url_for('home')}}#home" class="text-decoration-none text-light">
+    <img src="{{ url_for('static', filename='img/Logo white.png') }}" alt="Logo" width="40" height="40">
+    <span class="fs-4 ms-2">SmartHealth</span>
+    </a>
     </div>
 
+
     <div class="mb-4">
-      <a href="#" class="text-light text-decoration-none mx-2">About</a>
-      <a href="#" class="text-light text-decoration-none mx-2">Doctors</a>
-      <a href="#" class="text-light text-decoration-none mx-2">Specialties</a>
-      <a href="#" class="text-light text-decoration-none mx-2">Cities</a>
+      <a href="{{ url_for('home')}}#about" class="text-light text-decoration-none mx-2">About</a>
       <a href="#" class="text-light text-decoration-none mx-2">Support</a>
       <a href="#" class="text-light text-decoration-none mx-2">Terms</a>
       <a href="#" class="text-light text-decoration-none mx-2">Privacy</a>
+      <a href="#" class="text-light text-decoration-none mx-2">Contact</a>
+
     </div>
 
     <div class="small text-secondary">
