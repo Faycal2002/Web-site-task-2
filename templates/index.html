@@ -18,7 +18,7 @@
 
       <div class="container mt-5 text-center">
         <button type="button" class="btn btn-dark">Book</button>
-        <button type="button" class="btn btn-white active">Search</button>
+        <a href="{{ url_for('search') }}" class="btn btn-white active">Search</a>
       </div>
 
     </section>
@@ -90,7 +90,7 @@
                  </div>
               <div class="card-footer">
                 
-                <button type="button" class="btn btn-dark">Search →</button>
+                <a href="{{ url_for('search') }}" class="btn btn-white active">Search</a>
 
               </div>
         </div>
